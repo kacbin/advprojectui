@@ -1,0 +1,229 @@
+<br>
+
+<div class="jumbotron">
+  <h3>Texas Regional Transport and Route Schedules</h3>
+
+</div>
+
+<br>
+
+<div class="well hoverwell thumbnail">
+  <div class="container">
+    <div class="row">
+      <p>Welcome User :-)</p>
+      <br>
+      <p>Route information from the database repository are displayed herewith, giving related information on start and end
+        destination of different routes. It also includes the departure </p>
+      <p> and a unique route name for each route available.</p>
+
+    </div>
+  </div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+
+
+
+            <td>
+              <h3><span class="label label-default">SEARCHBY</span></h3>
+            </td>
+            <td> <select class="form-control" [(ngModel)]="SearchBy">
+              <option value="routeId">Route Id</option>
+              <option value="search">Route Name</option>
+             
+              </select>
+            </td>
+            <td>
+
+              <input type="text" class="form-control" placeholder="Enter Route Id" [(ngModel)]="routeId" (ngModelChange)="searchByRouteId()"
+                *ngIf="SearchBy == 'routeId'">
+              <input type="text" class="form-control" placeholder="Enter Route Name" [(ngModel)]="search" (ngModelChange)="searchByRouteName()"
+                *ngIf="SearchBy == 'search'">
+
+            </td>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="well hoverwell thumbnail">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6">
+
+
+        <br>
+        <br>
+        <table class="table table-hover" *ngIf="editRoute">
+
+
+          <tr>
+            <td> ROUTE ID*:</td>
+            <td><input type="text" class="form-control" [(ngModel)]="routeModel.routeId" disabled></td>
+          </tr>
+          <tr>
+            <td> START DESTINATION*:</td>
+
+            <td>
+              <select class="form-control" placeholder="Route Start Destination" name='stDest' [(ngModel)]="routeModel.startDest">
+               <option  >Choose Start Destination</option>
+               <option   value='DALLAS'>DALLAS
+               <option   value='IRVING'>IRVING
+               <option   value='FORT WORTH'>FORT WORTH
+               <option   value='AUSTIN'>AUSTIN
+               <option   value='SAN ANTANIO'>SAN ANTANIO
+               <option   value='NEW ORLEANS'>NEW ORLEANS
+               <option   value='HOUSTON'>HOUSTON
+               <option   value='PLANO'>PLANO
+               <option   value='ADDISON'>ADDISON
+               <option   value='COPPELL'>COPPELL
+               <option   value='COMMERCE'>COMMERCE
+               <option   value='FARMERS RANCH'>FARMERS RANCH
+               <option   value='COMMERCE'>COMMERCE
+               <option   value='MCKINNEY'>MCKINNEY
+               <option   value='WILEY'>WILEY
+                 
+            </select>
+              <!--<input type="text" placeholder="Route Start Destination" [(ngModel)]="routeModel.startDest">-->
+            </td>
+          </tr>
+          <tr>
+            <td>END DESTINATION*:</td>
+            <td>
+              <select class="form-control" placeholder="Route End Destination" name='endDest' [(ngModel)]="routeModel.endDest">
+               <option  >Choose Start Destination</option>
+               <option   value='DALLAS'>DALLAS
+               <option   value='IRVING'>IRVING
+               <option   value='FORT WORTH'>FORT WORTH
+               <option   value='AUSTIN'>AUSTIN
+               <option   value='SAN ANTANIO'>SAN ANTANIO
+               <option   value='NEW ORLEANS'>NEW ORLEANS
+               <option   value='HOUSTON'>HOUSTON
+               <option   value='PLANO'>PLANO
+               <option   value='ADDISON'>ADDISON
+               <option   value='COPPELL'>COPPELL
+               <option   value='COMMERCE'>COMMERCE
+               <option   value='FARMERS RANCH'>FARMERS RANCH
+               <option   value='COMMERCE'>COMMERCE
+               <option   value='MCKINNEY'>MCKINNEY
+               <option   value='WILEY'>WILEY
+                 
+            </select>
+              <!--<input type="text" placeholder="Route End Destination" [(ngModel)]="routeModel.endDest">-->
+            </td>
+          </tr>
+          <tr>
+            <td>DEPARTURE TIME* :</td>
+            <td> <input type="text" class="form-control" placeholder="Route Depart Time" [(ngModel)]="routeModel.departTime"></td>
+            <td>{{makeRequired}}</td>
+          </tr>
+          <tr>
+            <td>ESTIMATED ARRIVAL TIME* :</td>
+            <td>
+              <select class="form-control" placeholder="Route Est Arrival Time" name='estArrivalTime' [(ngModel)]="routeModel.estArrivalTime">
+               <option  >Choose Estimated Arrival Time</option>
+               <option   value='1 hrs'>1 hrs
+               <option   value='2 hrs'>2 hrs
+               <option   value='3 hrs'>3 hrs
+               <option   value='4 hrs'>4 hrs
+               <option   value='5 hrs'>5 hrs
+               <option   value='6 hrs'>6 hrs
+               <option   value='7 hrs'>7 hrs
+               <option   value='8 hrs'>8 hrs
+               <option   value='9 hrs'>9 hrs
+               <option   value='10 hrs'>10 hrs
+               <option   value='11 hrs'>11 hrs
+               <option   value='12 hrs'>12 hrs
+               <option   value='13 hrs'>13 hrs
+               <option   value='14 hrs'>14 hrs
+               <option   value='15 hrs'>15 hrs
+               <option   value='16 hrs'>16 hrs
+               <option   value='17 hrs'>17 hrs
+               <option   value='18 hrs'>18 hrs
+               <option   value='19 hrs'>19 hrs
+               <option   value='20 hrs'>20 hrs
+              
+
+                 </select>
+              <!--<input type="text" placeholder="Route Est Arrival Time" [(ngModel)]="routeModel.estArrivalTime"> -->
+            </td>
+          </tr>
+          <tr>
+            <td> ROUTE STATUS* :</td>
+            <td>
+              <select class="form-control" name='routeStatus' [(ngModel)]="routeModel.status">
+               <option  >Choose Status</option>
+               <option   value='ACTIVE'>ACTIVE
+              <option   value='INACTIVE'>INACTIVE
+            </select>
+              <!--<input type="text" placeholder="Route Status" [(ngModel)]="routeModel.status">-->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  <div class="well hoverwell thumbnail">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-11">
+          <table class="table table-striped">
+
+            <tr>
+              <td> Route Id</td>
+              <td> Start Destination</td>
+              <td> End Destination</td>
+              <td> Departure Time</td>
+              <td> Estimated Arrival Time</td>
+              <td> Route Name</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr *ngFor="let route of routeList">
+              <td>{{route.routeId}}</td>
+              <td>{{route.startDest}}</td>
+              <td>{{route.endDest}}</td>
+              <td>{{route.departTime}}</td>
+
+              <td>{{route.estArrivalTime}}</td>
+              <td>{{route.routeName}}</td>
+              <td> <button (click)="putButton(route)" type="button" class="btn btn-info btn-sm">EDIT</button></td>
+              <td> <button (click)="deleteRoute(route.routeId)" type="button" class="btn btn-danger btn-sm">REMOVE</button></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="well hoverwell thumbnail">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+        <table class="table table-striped" *ngIf="editRoute">
+          <tr>
+            <td> <button type="button" class="btn btn-primary btn-lg" (click)="putRoute()">SAVE</button></td>
+         
+            <td> <button type="button" class="btn btn-primary btn-lg" (click)="cancelButton()">CANCEL</button></td>
+          </tr>
+        </table>
+        </div>
+      </div>
+    </div>
+  </div>

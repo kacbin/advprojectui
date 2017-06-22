@@ -1,0 +1,128 @@
+<br>
+<div class="well hoverwell thumbnail">
+  <div class="container">
+    <div class="row">
+      <p>Welcome User  :-)</p>
+      <br>
+      <p>Vehicle information from the database repository are displayed herewith, giving related information on make and type of different vehicles. It also includes
+         the year and a unique </p>
+      <p> registration number for each vehicle available.</p>
+
+    </div>
+  </div>
+
+</div>
+<br>
+<br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table table-striped">
+
+
+          
+           <td><h3><span class="label label-default">SEARCHBY</span></h3></td>
+          <td>  <select class="form-control" [(ngModel)]="SearchBy">
+              <option value="searchMake">Vehicle Make</option>
+              <option value="searchType">Vehicle Type</option>
+              <option value="searchRegisNum">Registration Number</option>
+              </select>
+          </td>
+          <td>
+            <input type="text" class="form-control" placeholder="Enter Vehicle Type" [(ngModel)]="vehicleType" (ngModelChange)="searchByVehicleType()"
+              *ngIf="SearchBy == 'searchType'">
+          <input type="text" class="form-control" placeholder="Enter Vehicle Make" [(ngModel)]="vehicleMake" (ngModelChange)="searchByVehicleMake()"
+            *ngIf="SearchBy == 'searchMake'">
+            <input type="text" class="form-control" placeholder="Enter Registration Number" [(ngModel)]="regisNum" (ngModelChange)="searchByVehicleRegNum()"
+            *ngIf="SearchBy == 'searchRegisNum'">
+          </td>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+<div class="well hoverwell thumbnail">
+  <div class="container">
+    <div class="row">
+     
+      <div class="col-md-5">
+        <br>
+        <br>
+        <table class="table table-hover" *ngIf="editVehicle">
+          <tr>
+            <td> Vehicle Id* :</td>
+            <td><input type="text" [(ngModel)]="vehicleModel.vehicleId" disabled></td>
+          </tr>
+          <tr>
+            <td> REGISTRATION NUMBER* :</td>
+            <td><input type="text" placeholder="Registration Number" [(ngModel)]="vehicleModel.regisNum"></td>
+          </tr>
+          <tr>
+            <td>ACTIVE STATUS* : </td>
+
+            <td><input type="text" placeholder="Active Status" [(ngModel)]="vehicleModel.vehicleStatus"></td>
+          </tr>
+          <tr>
+            <td>TYPE* :</td>
+
+            <td> <input type="text" placeholder="Vehice Type" [(ngModel)]="vehicleModel.vehicleType"></td>
+          </tr>
+          <tr>
+            <td> MAKE* :</td>
+            <td> <input type="text" placeholder="Vehice Make" [(ngModel)]="vehicleModel.vehicleMake"></td>
+          </tr>
+          <tr>
+            <td> YEAR* :</td>
+            <td><input type="text" placeholder="Vehice year" [(ngModel)]="vehicleModel.vehicleYear"></td>
+       </tr>
+        </table>
+      </div>
+      <br>
+      <br>
+
+     
+
+     <div class="col-md-11">
+        <table class="table table-striped">
+          <tr>
+            <td> Vehicle Id</td>
+            <td> Registration Number</td>
+            <td> Status</td>
+            <td> Vehicle Type</td>
+            <td> Vehicle Make</td>
+            <td> Vehicle Year</td>
+            <td></td>
+            <td> </td>
+          </tr>
+          <tr *ngFor="let vehicle of vehicleList">
+          
+            <td>{{vehicle.vehicleId}}</td>
+            <td>{{vehicle.regisNum}}</td>
+            <td>{{vehicle.vehicleStatus}}</td>
+            <td>{{vehicle.vehicleType}}</td>
+            <td>{{vehicle.vehicleMake}}</td>
+            <td>{{vehicle.vehicleYear}}</td>
+            <td> <button (click)="putButton(vehicle)" type="button" class="btn btn-info btn-sm">EDIT</button></td>
+            <td> <button (click)="deleteVehicle(vehicle.vehicleId)" type="button" class="btn btn-danger btn-sm">REMOVE</button></td>
+
+    </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="well hoverwell thumbnail">
+  <div class="container">
+    <div class="row">
+
+      <button type="button" class="btn btn-primary btn-lg" (click)="putVehicle()" *ngIf="editVehicle">SAVE</button>
+
+
+    </div>
+  </div>
+</div>
